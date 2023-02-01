@@ -28,7 +28,10 @@
     // import React from 'react';
     "allowSyntheticDefaultImports": true,
     // Для абсолютного импорта
-    // "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "*": ["./src/*"]
+    }
   },
   // Так как из-за того ts-node, что не поддерживает какой-либо синтаксис модуля, кроме commonjs.
   //    Чтобы все работало корректно с import, но нужен "module": "ESNext"

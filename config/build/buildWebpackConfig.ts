@@ -31,7 +31,7 @@ export function buildWebpackConfig(
       rules: buildLoaders(options), // Обычно здесь указываем лоадеры, которые нам позволяют работать с определенными расширениями. По умолчанию только можем работать с js?
     },
 
-    resolve: buildResolvers(), // Позволяет не указывать расширение у файлов с такими extensions. Пример: import t from "./test" (вместо "./test.ts")
+    resolve: buildResolvers(options), // Позволяет не указывать расширение у файлов с такими extensions. Пример: import t from "./test" (вместо "./test.ts")
     devtool: isDev ? "inline-source-map" : undefined,
     devServer: isDev ?  buildDevServer(options) : undefined,
   };
