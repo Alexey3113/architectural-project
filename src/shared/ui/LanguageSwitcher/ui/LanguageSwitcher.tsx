@@ -15,12 +15,11 @@ export const LanguageSwitcher = ({ className }: LanguageSwitcherProps) => {
     };
 
     return (
-<Button
-onClick={toggleLanguage}
-className={classNames('', {}, [className])}
->
-{t('Язык')}
-Тест
-</Button>
+        <Button
+            onClick={toggleLanguage}
+            className={classNames('', {}, [className])}
+        >
+            {t('Язык')}
+        </Button>
     );
 };

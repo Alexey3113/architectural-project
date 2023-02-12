@@ -1,7 +1,8 @@
 {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "jest": true
     },
     "extends": [
         "plugin:react/recommended",
@@ -38,7 +39,7 @@
         "import/no-extraneous-dependencies": "off",
         "no-underscore-dangle": "off",
         "linebreak-style": "off",
-        "max-len": ["error", 200],
+        "max-len": ["error", 100, { "ignoreComments": true }],
         "i18next/no-literal-string": ["warn", { "markupOnly": true }]
     },
     "globals": {
