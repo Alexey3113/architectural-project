@@ -1,38 +1,38 @@
-import path from "path"; // Для создания путей
-import webpack, { ResolveOptions } from "webpack";
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import { BuildOptions } from "./types/config";
-import { buildPlugins } from "./buildPlugins";
-import { buildLoaders } from "./buildLoaders";
-import { buildResolvers } from "./buildResolvers";
-import { buildDevServer } from "./buildDevServer";
+import webpack from 'webpack';
+import { BuildOptions } from './types/config';
+import { buildPlugins } from './buildPlugins';
+import { buildLoaders } from './buildLoaders';
+import { buildResolvers } from './buildResolvers';
+import { buildDevServer } from './buildDevServer';
 
 export function buildWebpackConfig(
-  options: BuildOptions
+    options: BuildOptions,
 ): webpack.Configuration {
-  const { mode, paths, isDev } = options;
+    const { mode, paths, isDev } = options;
 
-  return {
-    mode, // Dev разработка или production
-    entry: {
-      main: paths.entry,
-    }, //Стартовая точка нашего приложения. main - название итогового файла (по умолчанию - main)
+    return {
+        mode, // Dev разработка или production
+        entry: {
+            main: paths.entry,
+        }, // Стартовая точка нашего приложения. main - название итогового файла (по умолчанию - main)
 
-    output: {
-      // Описывает куда будет произведена сборка нашего приложения
-      filename: "[name].[contenthash].js", // Как будет называться главный файл в нашей сборке приложения. Name - будет подставлять имя. [contenthash] - автоматическая генерация хеша (для выката новой версии)
-      path: paths.build, // Путь сборки
-      clean: true, // Старое удаляется
-    },
+        output: {
+            // Описывает куда будет произведена сборка нашего приложения
+            // fileName - Как будет называться главный файл в нашей сборке приложения. Name - будет подставлять имя. [contenthash] - автоматическая генерация хеша (для выката новой версии)
+            filename: '[name].[contenthash].js',
+            path: paths.build, // Путь сборки
+            clean: true, // Старое удаляется
+        },
 
-    plugins: buildPlugins(options), // Плагины
+        plugins: buildPlugins(options), // Плагины
 
-    module: {
-      rules: buildLoaders(options), // Обычно здесь указываем лоадеры, которые нам позволяют работать с определенными расширениями. По умолчанию только можем работать с js?
-    },
+        module: {
+            // Обычно здесь указываем лоадеры, которые нам позволяют работать с определенными расширениями. По умолчанию только можем работать с js?
+            rules: buildLoaders(options),
+        },
 
-    resolve: buildResolvers(options), // Позволяет не указывать расширение у файлов с такими extensions. Пример: import t from "./test" (вместо "./test.ts")
-    devtool: isDev ? "inline-source-map" : undefined,
-    devServer: isDev ?  buildDevServer(options) : undefined,
-  };
+        resolve: buildResolvers(options), // Позволяет не указывать расширение у файлов с такими extensions. Пример: import t from "./test" (вместо "./test.ts")
+        devtool: isDev ? 'inline-source-map' : undefined,
+        devServer: isDev ? buildDevServer(options) : undefined,
+    };
 }
