@@ -1,4 +1,4 @@
-import { classNames } from 'helpers/classNames/classNames';
+import { classNames } from 'shared/lib/classNames/classNames';
 
 import { Link, LinkProps } from 'react-router-dom';
 import { FC } from 'react';
