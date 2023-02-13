@@ -41,7 +41,7 @@
     "max-len": ["error", 100, { "ignoreComments": true }],
     "i18next/no-literal-string": [
       "error",
-      { "markupOnly": true, "ignoreAttribute": ["data-testid", "classNames"] }
+      { "markupOnly": true, "ignoreAttribute": ["data-testid", "classNames", "to"] }
     ]
   },
   "globals": {

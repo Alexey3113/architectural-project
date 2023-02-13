@@ -25,7 +25,9 @@ export function buildPlugins({
             __IS_DEV__: isDev,
         }),
         new webpack.HotModuleReplacementPlugin(),
-        new BundleAnalyzerPlugin(),
+        new BundleAnalyzerPlugin({
+            openAnalyzer: false,
+        }),
         // new ReactRefreshWebpackPlugin({ overlay: false }),
     ];
 }
