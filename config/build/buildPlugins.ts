@@ -9,8 +9,8 @@ export function buildPlugins({
     paths,
     isDev,
 }: BuildOptions): webpack.WebpackPluginInstance[] {
-    return [
-    // Добавление разных плагинов
+    const plugins = [
+        // Добавление разных плагинов
 
         new HtmlWebpackPlugin({
             template: paths.html, // Дефолтные шаблон. В него встраиваются скрипты. + чтобы корректно root отображался
@@ -24,10 +24,15 @@ export function buildPlugins({
             // глобальные переменные
             __IS_DEV__: isDev,
         }),
-        new webpack.HotModuleReplacementPlugin(),
-        new BundleAnalyzerPlugin({
-            openAnalyzer: false,
-        }),
+
         // new ReactRefreshWebpackPlugin({ overlay: false }),
     ];
+    if (isDev) {
+        plugins.push(new webpack.HotModuleReplacementPlugin());
+        plugins.push(new BundleAnalyzerPlugin({
+            openAnalyzer: false,
+        }));
+    }
+
+    return plugins;
 }
