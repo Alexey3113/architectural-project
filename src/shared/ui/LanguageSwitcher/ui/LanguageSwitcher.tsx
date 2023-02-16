@@ -21,7 +21,7 @@ export const LanguageSwitcher = ({ className, short }: LanguageSwitcherProps) =>
             className={classNames('', {}, [className])}
             theme={ButtonTheme.CLEAR}
         >
-            {short ? t('Короткий семьи') : t('Язык')}
+            {short ? t('Короткий язык') : t('Язык')}
         </Button>
     );
 };
