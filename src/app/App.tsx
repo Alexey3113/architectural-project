@@ -1,27 +1,21 @@
 import './styles/index.scss';
 
-import { classNames } from 'shared/lib/classNames/classNames';
-import { useTheme } from 'app/providers/ThemeProvider';
 import { AppRouter } from 'app/providers/router';
 import { Navbar } from 'widgets/Navbar';
 import { Sidebar } from 'widgets/Sidebar';
-import { type FC, Suspense, useState } from 'react';
+import { type FC, Suspense } from 'react';
 
-const App: FC = () => {
-    const { theme } = useTheme();
+const App: FC = () => (
+    <div className="app">
+        <Suspense fallback="">
+            <Navbar />
 
-    return (
-        <div className={classNames('app', {}, [theme])}>
-            <Suspense fallback="">
-                <Navbar />
-
-                <div className="content-page">
-                    <Sidebar />
-                    <AppRouter />
-                </div>
-            </Suspense>
-        </div>
-    );
-};
+            <div className="content-page">
+                <Sidebar />
+                <AppRouter />
+            </div>
+        </Suspense>
+    </div>
+);
 
 export default App;
