@@ -1,6 +1,5 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 
-import { useTranslation } from 'react-i18next';
 import {
     ChangeEvent, InputHTMLAttributes, memo, useState,
 } from 'react';
@@ -26,8 +25,6 @@ export const Input = memo((props: InputProps) => {
         placeholder,
         ...otherProps
     } = props;
-
-    const { t } = useTranslation();
 
     const [isFocused, setIsFocused] = useState(false);
     const [caretPosition, setCaretPosition] = useState(0);
