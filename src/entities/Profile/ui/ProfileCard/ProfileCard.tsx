@@ -20,7 +20,6 @@ export const ProfileCard = ({ className }: IProfileCardProps) => {
         <div className={classNames(cls.ProfileCard, {}, [className])}>
             <div className={cls.header}>
                 <Text title={t('Профиль')} />
-                123
                 <Button theme={ButtonTheme.OUTLINED}>{t('Сохранить')}</Button>
             </div>
 
