@@ -29,6 +29,7 @@
     "allowSyntheticDefaultImports": true,
     // Для абсолютного импорта
     "baseUrl": ".",
+    "strict": true,
     "paths": {
       "*": ["./src/*"]
     }

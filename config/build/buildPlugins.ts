@@ -7,6 +7,7 @@ import { BuildOptions } from './types/config';
 export function buildPlugins({
     paths,
     isDev,
+    apiUrl,
 }: BuildOptions): webpack.WebpackPluginInstance[] {
     const plugins = [
         // Добавление разных плагинов
@@ -22,6 +23,7 @@ export function buildPlugins({
         new webpack.DefinePlugin({
             // глобальные переменные
             __IS_DEV__: isDev,
+            __API_URL__: JSON.stringify(apiUrl),
         }),
 
         // new ReactRefreshWebpackPlugin({ overlay: false }),

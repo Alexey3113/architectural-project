@@ -1,8 +1,8 @@
-import { Story } from '@storybook/api';
+import { Story } from '@storybook/react';
 import { Theme } from 'app/providers/ThemeProvider';
 
-export const ThemeDecorator = (theme: Theme) => (story: () => Story) => (
+export const ThemeDecorator = (theme: Theme) => (StoryComponent: Story) => (
     <div className={`app ${theme}`}>
-        {story()}
+        <StoryComponent />
     </div>
 );
