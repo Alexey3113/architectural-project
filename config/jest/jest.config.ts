@@ -1,14 +1,15 @@
+import path from 'path';
+import { ProjectType } from '../build/types/config';
 /*
  * For a detailed explanation regarding each configuration property and type check, visit:
  * https://jestjs.io/docs/configuration
  */
 
-import path from 'path';
-
 export default {
     globals: {
         __IS_DEV__: true,
         __API_URL__: '',
+        __PROJECT__: 'jest' as ProjectType,
     },
     clearMocks: true,
     moduleDirectories: [
