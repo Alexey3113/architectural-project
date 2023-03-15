@@ -22,6 +22,7 @@ export function buildWebpackConfig(
             filename: '[name].[contenthash].js',
             path: paths.build, // Путь сборки
             clean: true, // Старое удаляется
+            publicPath: '/',
         },
 
         plugins: buildPlugins(options), // Плагины
