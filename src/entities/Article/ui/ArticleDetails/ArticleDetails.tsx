@@ -5,7 +5,6 @@ import {
     DynamicModuleLoader,
     ReducerList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Text, TextAlign, TextSize } from 'shared/ui/Text/Text';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
@@ -13,6 +12,7 @@ import { Avatar } from 'shared/ui/Avatar/Avatar';
 import EyeIcon from 'shared/assets/icons/eye-20-20.svg';
 import CalendarIcon from 'shared/assets/icons/calendar-20-20.svg';
 import { Icon } from 'shared/ui/Icon/Icon';
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
 import cls from './ArticleDetails.module.scss';
 import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArticleById';
@@ -56,11 +56,11 @@ export const ArticleDetails = (props: IArticleDetailsProps) => {
     const article = useSelector(getArticleDetailsData);
     const error = useSelector(getArticleDetailsError);
 
-    useEffect(() => {
+    useInitialEffect(() => {
         if (__PROJECT__ !== 'storybook') {
             dispatch(fetchArticleById(id));
         }
-    }, [dispatch, id]);
+    });
 
     let content;
 
