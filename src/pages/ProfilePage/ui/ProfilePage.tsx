@@ -1,9 +1,7 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 
-import {
-    DynamicModuleLoader,
-    ReducerList,
-} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { Country } from 'entities/Country';
+import { Currency } from 'entities/Currency/model/types/currency';
 import {
     ProfileCard,
     ValidationProfileErrors,
@@ -16,13 +14,17 @@ import {
     profileActions,
     profileReducer,
 } from 'entities/Profile';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { useCallback, useEffect, useMemo } from 'react';
-import { useSelector } from 'react-redux';
-import { Currency } from 'entities/Currency/model/types/currency';
-import { Country } from 'entities/Country';
-import { Text, TextTheme } from 'shared/ui/Text/Text';
+import { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import {
+    DynamicModuleLoader,
+    ReducerList,
+} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
+import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';
 
 interface IProfilePageProps {
@@ -42,6 +44,7 @@ const ProfilePage = ({ className }: IProfilePageProps) => {
     const error = useSelector(getProfileError);
     const readonly = useSelector(getProfileReadonly);
     const validationErrors = useSelector(getValidationErrors);
+    const { id } = useParams<{ id: string }>();
 
     const translatedValidationsErrors = useMemo(() => ({
         [ValidationProfileErrors.NO_DATA]: t('Заполните данные профиля'),
@@ -105,11 +108,11 @@ const ProfilePage = ({ className }: IProfilePageProps) => {
         [dispatch],
     );
 
-    useEffect(() => {
+    useInitialEffect(() => {
         if (__PROJECT__ !== 'storybook') {
-            dispatch(fetchProfileData());
+            dispatch(fetchProfileData(id || ''));
         }
-    }, [dispatch]);
+    });
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>

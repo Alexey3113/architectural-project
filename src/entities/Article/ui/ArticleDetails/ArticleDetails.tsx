@@ -56,14 +56,9 @@ export const ArticleDetails = (props: IArticleDetailsProps) => {
     const article = useSelector(getArticleDetailsData);
     const error = useSelector(getArticleDetailsError);
 
-    const testFuncForCommitMessage = () => {
-        // test
-    };
-
     useInitialEffect(() => {
         if (__PROJECT__ !== 'storybook') {
             dispatch(fetchArticleById(id));
-            testFuncForCommitMessage();
         }
     });
 

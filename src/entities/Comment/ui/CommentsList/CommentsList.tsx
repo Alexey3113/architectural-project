@@ -15,6 +15,16 @@ interface ICommentsListProps {
 export const CommentsList = ({ className, comments, isLoading }: ICommentsListProps) => {
     const { t } = useTranslation();
 
+    if (isLoading) {
+        return (
+            <div className={classNames(cls.CommentsList, {}, [className])}>
+                <CommentCard isLoading={isLoading} />
+                <CommentCard isLoading={isLoading} />
+                <CommentCard isLoading={isLoading} />
+            </div>
+        );
+    }
+
     return (
         <div className={classNames(cls.CommentsList, {}, [className])}>
             {comments.length ? comments.map((comment) => (

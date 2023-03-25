@@ -7,10 +7,13 @@ import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicM
 import { useSelector } from 'react-redux';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useCallback } from 'react';
+import { AddCommentForm } from 'features/AddCommentForm';
 import cls from './ArticleDetailPage.module.scss';
 import { articleDetailsCommentReducer, getArticleComments } from '../models/slice/articleDetailsComment';
 import { getArticleCommentsLoading } from '../models/selectors/comments';
 import { fetchArticleComments } from '../models/services/fetchArticleComments/fetchArticleComments';
+import { addCommentForArticle } from '../models/services/addCommentForArticle/addCommentForArticle';
 
 const reducers: ReducerList = {
     articleDetailsComment: articleDetailsCommentReducer,
@@ -23,6 +26,10 @@ const ArticleDetailPage = () => {
 
     const comments = useSelector(getArticleComments.selectAll);
     const commentsIsLoading = useSelector(getArticleCommentsLoading);
+
+    const handleSendComment = useCallback((value: string) => {
+        dispatch(addCommentForArticle(value));
+    }, [dispatch]);
 
     useInitialEffect(() => {
         dispatch(fetchArticleComments(id));
@@ -41,6 +48,7 @@ const ArticleDetailPage = () => {
             <div className={cls.ArticleDetailPage}>
                 <ArticleDetails id={id} />
                 <Text title={t('Комментарии')} className={cls.commentTitle} />
+                <AddCommentForm onSendComment={handleSendComment} />
                 <CommentsList
                     isLoading={commentsIsLoading}
                     comments={comments}

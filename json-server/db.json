@@ -29,6 +29,34 @@
       "text": "some comment 3",
       "articleId": "1",
       "userId": "1"
+    },
+    {
+      "params": {
+        "articleId": "1",
+        "userId": "2",
+        "text": "Хорошая статья"
+      },
+      "id": "MUwUgra"
+    },
+    {
+      "params": {
+        "articleId": "1",
+        "userId": "2",
+        "text": "хорошая статья"
+      },
+      "id": "rvPnPau"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "Крутая статья!",
+      "id": "r89vdw6"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "крутяк!",
+      "id": "TUfdNJn"
     }
   ],
   "users": [
@@ -44,7 +72,7 @@
       "username": "user",
       "password": "123",
       "role": "USER",
-      "avatar": "https://teknotower.com/wp-content/uploads/2020/11/js.png"
+      "avatar": "https://cdnstatic.rg.ru/uploads/images/145/57/97/68.jpg"
     }
   ],
   "articles": [
@@ -55,7 +83,9 @@
       "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
       "views": 1022,
       "createdAt": "26.02.2022",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -118,14 +148,28 @@
       ]
     }
   ],
-  "profile": {
-    "first": "test",
-    "lastname": "test",
-    "age": 2124124421,
-    "currency": "EUR",
-    "country": "Kazahstan",
-    "city": "Moscow",
-    "username": "admin",
-    "avatar": "https://chudo-prirody.com/uploads/posts/2021-08/1628909188_6-p-khitrii-kot-foto-6.jpg"
-  }
+  "profile": [
+    {
+      "id": "1",
+      "first": "test",
+      "lastname": "test",
+      "age": 2124124421,
+      "currency": "EUR",
+      "country": "Kazahstan",
+      "city": "Moscow",
+      "username": "admin",
+      "avatar": "https://chudo-prirody.com/uploads/posts/2021-08/1628909188_6-p-khitrii-kot-foto-6.jpg"
+    },
+    {
+      "id": "2",
+      "first": "test12",
+      "lastname": "test",
+      "age": 2124124421,
+      "currency": "EUR",
+      "country": "Kazahstan",
+      "city": "Moscow",
+      "username": "user",
+      "avatar": "https://cdnstatic.rg.ru/uploads/images/145/57/97/68.jpg"
+    }
+  ]
 }
