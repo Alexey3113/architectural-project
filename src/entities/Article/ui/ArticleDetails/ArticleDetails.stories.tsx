@@ -23,6 +23,11 @@ const article: Article = {
     views: 1022,
     createdAt: '26.02.2022',
     type: [ArticleType.IT],
+    user: {
+        id: '1',
+        username: 'Alexey Tv',
+        avatar: 'https://cdnstatic.rg.ru/uploads/images/145/57/97/68.jpg',
+    },
     blocks: [
         {
             id: '1',

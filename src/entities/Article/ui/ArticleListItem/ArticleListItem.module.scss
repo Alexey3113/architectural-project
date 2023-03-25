@@ -1,0 +1,102 @@
+.date {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.infoWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.views {
+    margin-right: 8px;
+}
+
+.LIST {
+    width: 230px;
+    cursor: pointer;
+    transition: 0.2s;
+
+    .imageWrapper {
+        position: relative;
+        width: 200px;
+        height: 200px;
+    }
+
+    .image {
+        width: 200px;
+        height: 200px;
+    }
+
+    .date {
+        display: none;
+    }
+
+    .infoWrapper {
+        margin: 8px 0;
+    }
+
+    .types {
+        width: 110px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .viewsWrapper {
+        display: flex;
+    }
+
+    .title {
+        width: 200px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &:hover {
+        scale: (1.01);
+        opacity: 0.8;
+        transition: 0.2s;
+
+        & .date {
+            display: block;
+        }
+    }
+}
+
+.TILE {
+    .header {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    .username {
+        margin-left: 8px;
+    }
+
+    .title {
+        margin: 8px 0;
+    }
+
+    .imageArticle {
+        max-height: 200px;
+        width: 100%;
+        object-fit: contain;
+    }
+
+    .textBlock {
+        max-height: 190px;
+        overflow-y: hidden;
+        margin: 8px 0;
+    }
+
+    .footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}

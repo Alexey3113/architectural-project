@@ -13,6 +13,9 @@ import EyeIcon from 'shared/assets/icons/eye-20-20.svg';
 import CalendarIcon from 'shared/assets/icons/calendar-20-20.svg';
 import { Icon } from 'shared/ui/Icon/Icon';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
+import { Button, ButtonTheme } from 'shared/ui/Button';
+import { useNavigate } from 'react-router-dom';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
 import cls from './ArticleDetails.module.scss';
 import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArticleById';
@@ -55,6 +58,11 @@ export const ArticleDetails = (props: IArticleDetailsProps) => {
     const isLoading = useSelector(getArticleDetailsLoading);
     const article = useSelector(getArticleDetailsData);
     const error = useSelector(getArticleDetailsError);
+    const navigate = useNavigate();
+
+    const handleGoBack = () => {
+        navigate(RoutePath.articles);
+    };
 
     useInitialEffect(() => {
         if (__PROJECT__ !== 'storybook') {
@@ -89,6 +97,9 @@ export const ArticleDetails = (props: IArticleDetailsProps) => {
     } else {
         content = (
             <>
+                <Button theme={ButtonTheme.OUTLINED} onClick={handleGoBack}>
+                    {t('Назад к статьям')}
+                </Button>
                 <div className={cls.avatarWrapper}><Avatar size={200} src={article?.img} /></div>
                 <Text title={article?.title} text={article?.subtitle} size={TextSize.LG} />
                 <div className={cls.articleInfo}>

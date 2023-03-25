@@ -1,3 +1,5 @@
+export { ArticleView } from './model/types/article.types';
+export { ArticleList } from './ui/ArticleList/ArticleList';
 export { getArticleDetailsData } from './model/selectors/articleDetails.selectors';
 export {
     ArticleBlockType, Article, ArticleBlock, ArticleType,

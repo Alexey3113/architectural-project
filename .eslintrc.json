@@ -70,5 +70,6 @@
         "i18next/no-literal-string": "off"
       }
     }
-  ]
+  ], 
+  "ignorePatterns": ["*.stories.tsx"]
 }
