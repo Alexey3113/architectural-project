@@ -13,16 +13,19 @@ import { UserSchema } from 'entities/User';
 import { AddCommentFormSchema } from 'features/AddCommentForm';
 import { LoginSchema } from 'features/AuthByUsername';
 import { ArticleDetailsCommentSchema } from 'pages/ArticleDetailPage';
-import { NavigateOptions, To } from 'react-router-dom';
+import { ArticlePageSchema } from 'pages/ArticlesPage';
+import { ScrollSavingSchema } from 'widgets/ScrollSaving';
 
 export interface StateSchema {
   counter: CounterSchema;
   user: UserSchema;
+  scrollSaving: ScrollSavingSchema;
   login?: LoginSchema;
   profile?: ProfileSchema;
   articlesDetails?: ArticleDetailsSchema;
   articleDetailsComment?: ArticleDetailsCommentSchema;
-  addCommentForm?: AddCommentFormSchema
+  addCommentForm?: AddCommentFormSchema;
+  articlePage?: ArticlePageSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
@@ -39,7 +42,6 @@ export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
 
 export interface ThunkExtraArg {
   api: AxiosInstance,
-  navigate?: (to: To, options?: NavigateOptions) => void;
 }
 
 export interface ThunkConfig<T> {

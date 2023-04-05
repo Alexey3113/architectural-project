@@ -12,7 +12,7 @@ interface IArticleListProps {
  isLoading: boolean;
 }
 
-const getSkeletons = (view: ArticleView) => new Array(9)
+const getSkeletons = (view: ArticleView) => new Array(view === ArticleView.LIST ? 9 : 3)
     // eslint-disable-next-line react/no-array-index-key
     .fill(0).map((_, index) => <ArticleListItemSkeleton view={view} key={index} />);
 
@@ -20,14 +20,6 @@ export const ArticleList = (props: IArticleListProps) => {
     const {
         className, articles, view, isLoading,
     } = props;
-
-    if (isLoading) {
-        return (
-            <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
-                {getSkeletons(view)}
-            </div>
-        );
-    }
 
     const renderElements = (article: Article) => (
         <ArticleListItem article={article} view={view} key={article.id} />
@@ -39,7 +31,7 @@ export const ArticleList = (props: IArticleListProps) => {
             {articles.length > 0
                 ? articles.map(renderElements)
                 : null}
-
+            {isLoading && getSkeletons(view)}
         </div>
     );
 };

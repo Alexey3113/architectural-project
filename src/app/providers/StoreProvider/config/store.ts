@@ -6,26 +6,25 @@ import {
 import { counterReducer } from 'entities/Counter';
 import { userReducer } from 'entities/User';
 import { axiosClient } from 'shared/assets/api/api';
-import { NavigateOptions, To } from 'react-router-dom';
+import { scrollSavingReducer } from 'widgets/ScrollSaving';
 import { StateSchema, ThunkExtraArg } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 
 export function createReduxStore(
     initialState: StateSchema,
     asyncReducers?: ReducersMapObject,
-    navigate?: (to: To, options?: NavigateOptions) => void,
 ) {
     const rootReducers: ReducersMapObject<StateSchema> = {
         ...asyncReducers,
         counter: counterReducer,
         user: userReducer,
+        scrollSaving: scrollSavingReducer,
     };
 
     const reducerManager = createReducerManager(rootReducers);
 
     const extraArg: ThunkExtraArg = {
         api: axiosClient,
-        navigate,
     };
 
     const store = configureStore({

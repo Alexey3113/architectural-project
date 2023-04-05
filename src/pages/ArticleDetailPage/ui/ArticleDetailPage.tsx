@@ -9,6 +9,7 @@ import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEf
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useCallback } from 'react';
 import { AddCommentForm } from 'features/AddCommentForm';
+import { Page } from 'widgets/Page/Page';
 import cls from './ArticleDetailPage.module.scss';
 import { articleDetailsCommentReducer, getArticleComments } from '../models/slice/articleDetailsComment';
 import { getArticleCommentsLoading } from '../models/selectors/comments';
@@ -44,17 +45,19 @@ const ArticleDetailPage = () => {
     }
 
     return (
-        <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-            <div className={cls.ArticleDetailPage}>
-                <ArticleDetails id={id} />
-                <Text title={t('Комментарии')} className={cls.commentTitle} />
-                <AddCommentForm onSendComment={handleSendComment} />
-                <CommentsList
-                    isLoading={commentsIsLoading}
-                    comments={comments}
-                />
-            </div>
-        </DynamicModuleLoader>
+        <Page>
+            <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
+                <div className={cls.ArticleDetailPage}>
+                    <ArticleDetails id={id} />
+                    <Text title={t('Комментарии')} className={cls.commentTitle} />
+                    <AddCommentForm onSendComment={handleSendComment} />
+                    <CommentsList
+                        isLoading={commentsIsLoading}
+                        comments={comments}
+                    />
+                </div>
+            </DynamicModuleLoader>
+        </Page>
     );
 };
 
