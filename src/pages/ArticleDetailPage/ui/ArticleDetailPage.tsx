@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { ArticleDetails } from 'entities/Article';
+import { ArticleDetails, ArticleList, ArticleView } from 'entities/Article';
 import { useParams } from 'react-router-dom';
 import { Text } from 'shared/ui/Text/Text';
 import { CommentsList } from 'entities/Comment';
@@ -11,19 +11,27 @@ import { useCallback } from 'react';
 import { AddCommentForm } from 'features/AddCommentForm';
 import { Page } from 'widgets/Page/Page';
 import cls from './ArticleDetailPage.module.scss';
-import { articleDetailsCommentReducer, getArticleComments } from '../models/slice/articleDetailsComment';
+import { getArticleComments } from '../models/slice/articleDetailsComment';
 import { getArticleCommentsLoading } from '../models/selectors/comments';
 import { fetchArticleComments } from '../models/services/fetchArticleComments/fetchArticleComments';
 import { addCommentForArticle } from '../models/services/addCommentForArticle/addCommentForArticle';
+import { getArticleRecommendations } from '../models/slice/articleDetailsRecommendationsSlice';
+import { getArticlesRecommendationsLoading } from '../models/selectors/recommendations';
+import { fetchArticlesRecommendations }
+    from '../models/services/featchArticlesRecommendations/fetchArticlesRecommendations';
+import { articleDetailsPageReducer } from '../models/slice';
 
 const reducers: ReducerList = {
-    articleDetailsComment: articleDetailsCommentReducer,
+    articleDetailsPage: articleDetailsPageReducer,
 };
 
 const ArticleDetailPage = () => {
     const { t } = useTranslation();
     const { id } = useParams<{ id: string }>();
     const dispatch = useAppDispatch();
+
+    const recommendations = useSelector(getArticleRecommendations.selectAll);
+    const articlesIsLoading = useSelector(getArticlesRecommendationsLoading);
 
     const comments = useSelector(getArticleComments.selectAll);
     const commentsIsLoading = useSelector(getArticleCommentsLoading);
@@ -34,6 +42,7 @@ const ArticleDetailPage = () => {
 
     useInitialEffect(() => {
         dispatch(fetchArticleComments(id));
+        dispatch(fetchArticlesRecommendations());
     });
 
     if (!id) {
@@ -49,6 +58,15 @@ const ArticleDetailPage = () => {
             <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
                 <div className={cls.ArticleDetailPage}>
                     <ArticleDetails id={id} />
+                    <Text title={t('Рекомендации')} className={cls.commentTitle} />
+                    <ArticleList
+                        className={cls.recommendations}
+                        view={ArticleView.LIST}
+                        isLoading={articlesIsLoading}
+                        articles={recommendations}
+                        target="_blank"
+                    />
+
                     <Text title={t('Комментарии')} className={cls.commentTitle} />
                     <AddCommentForm onSendComment={handleSendComment} />
                     <CommentsList

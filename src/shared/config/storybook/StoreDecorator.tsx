@@ -4,7 +4,7 @@ import { articleDetailsReducer } from 'entities/Article';
 import { profileReducer } from 'entities/Profile';
 import { addCommentFormReducer } from 'features/AddCommentForm';
 import { loginReducer } from 'features/AuthByUsername';
-import { articleDetailsCommentReducer } from 'pages/ArticleDetailPage';
+import { articlesPageReducer } from 'pages/ArticlesPage/models/slice/articlesPageSlice';
 import { ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 
 const defaultAsyncReducers: ReducerList = {
@@ -12,7 +12,7 @@ const defaultAsyncReducers: ReducerList = {
     profile: profileReducer,
     articlesDetails: articleDetailsReducer,
     addCommentForm: addCommentFormReducer,
-    articleDetailsComment: articleDetailsCommentReducer,
+    articleDetailsPage: articlesPageReducer,
 };
 
 export const StoreDecorator = (

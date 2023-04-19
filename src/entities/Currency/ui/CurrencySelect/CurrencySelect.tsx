@@ -12,7 +12,7 @@ interface ICurrencySelectProps {
   readonly?: boolean;
 }
 
-const options: SelectOption[] = [
+const options: SelectOption<Currency>[] = [
     {
         content: Currency.EUR,
         value: Currency.EUR,

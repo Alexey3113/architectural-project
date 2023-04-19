@@ -48,7 +48,7 @@
       "error",
       {
         "markupOnly": true,
-        "ignoreAttribute": ["data-testid", "classNames", "to"]
+        "ignoreAttribute": ["data-testid", "classNames", "to", "target"]
       }
     ],
     "jsx-a11y/click-events-have-key-events": "off",

@@ -44,7 +44,7 @@ export const Page = ({ className, children, onScrollEnd }: IPageProps) => {
             onScroll={handleScroll}
         >
             {children}
-            <div ref={endRef} />
+            {onScrollEnd && <div className={cls.trigger} ref={endRef} />}
         </section>
     );
 };

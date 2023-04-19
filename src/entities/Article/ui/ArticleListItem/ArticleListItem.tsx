@@ -4,11 +4,12 @@ import { Card } from 'shared/ui/Card/Card';
 import { Text } from 'shared/ui/Text/Text';
 import EyeIcon from 'shared/assets/icons/eye-20-20.svg';
 import { Icon } from 'shared/ui/Icon/Icon';
-import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { Button, ButtonTheme } from 'shared/ui/Button';
 import { useTranslation } from 'react-i18next';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
+import { AppLink } from 'shared/ui/AppLink/AppLink';
+import { HTMLAttributeAnchorTarget } from 'react';
 import {
     Article, ArticleBlockType, ArticleTextBlock, ArticleView,
 } from '../../model/types/article.types';
@@ -19,16 +20,14 @@ interface IArticleListItemProps {
  className?: string;
  article: Article,
  view: ArticleView
+ target?: HTMLAttributeAnchorTarget
 }
 
 export const ArticleListItem = (props: IArticleListItemProps) => {
-    const { className, article, view = ArticleView.LIST } = props;
-    const navigate = useNavigate();
+    const {
+        className, article, view = ArticleView.LIST, target,
+    } = props;
     const { t } = useTranslation();
-
-    const handleNavigateToDetailArticle = () => {
-        navigate(RoutePath.articles_detail + article.id);
-    };
 
     const views = (
         <div className={cls.infoWrapper}>
@@ -53,12 +52,13 @@ export const ArticleListItem = (props: IArticleListItemProps) => {
                     <img className={cls.imageArticle} src={article.img} alt={article.title} />
                     {textBlock && <ArticleTextBlockComponent block={textBlock} className={cls.textBlock} />}
                     <div className={cls.footer}>
-                        <Button
-                            onClick={handleNavigateToDetailArticle}
-                            theme={ButtonTheme.OUTLINED}
-                        >
-                            {t('Читать далее...')}
-                        </Button>
+                        <AppLink target={target} to={RoutePath.articles_detail + article.id}>
+                            <Button
+                                theme={ButtonTheme.OUTLINED}
+                            >
+                                {t('Читать далее...')}
+                            </Button>
+                        </AppLink>
                         {views}
                     </div>
                 </Card>
@@ -67,8 +67,9 @@ export const ArticleListItem = (props: IArticleListItemProps) => {
     }
 
     return (
-        <div
-            onClick={handleNavigateToDetailArticle}
+        <AppLink
+            target={target}
+            to={RoutePath.articles_detail + article.id}
             className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}
         >
             <Card>
@@ -79,6 +80,6 @@ export const ArticleListItem = (props: IArticleListItemProps) => {
                 {views}
                 <Text className={cls.title} text={article.title} />
             </Card>
-        </div>
+        </AppLink>
     );
 };
