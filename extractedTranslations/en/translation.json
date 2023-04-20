@@ -1,10 +1,13 @@
 {
+  "Alex Proj": "Alex Proj",
   "Lorem ipsum dolor sit, amet consectetur adipisicing elit": {
     " Neque excabo ex": " Neque excabo ex",
     " Neque explicabo ex": " Neque explicabo ex",
     " Neque explicabo expedita eligendi, eius eos facere": " Neque explicabo expedita eligendi, eius eos facere"
   },
   "Profile": "Profile",
+  "Ulbi TV": "Ulbi TV",
+  "Ulbi tv": "Ulbi tv",
   "Username": "Username",
   "decrement": "decrement",
   "increment": "increment",
@@ -62,6 +65,8 @@
   "Профиль": "Профиль",
   "Редактировать": "Редактировать",
   "Рекомендации": "Рекомендации",
+  "Создание канала": "Создание канала",
+  "Создать статью": "Создать статью",
   "Сортировка ПО": "Сортировка ПО",
   "Сортировка по": "Сортировка по",
   "Сохранить": "Сохранить",

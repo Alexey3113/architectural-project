@@ -11,15 +11,16 @@ import { useCallback } from 'react';
 import { AddCommentForm } from 'features/AddCommentForm';
 import { Page } from 'widgets/Page/Page';
 import cls from './ArticleDetailPage.module.scss';
-import { getArticleComments } from '../models/slice/articleDetailsComment';
-import { getArticleCommentsLoading } from '../models/selectors/comments';
-import { fetchArticleComments } from '../models/services/fetchArticleComments/fetchArticleComments';
-import { addCommentForArticle } from '../models/services/addCommentForArticle/addCommentForArticle';
-import { getArticleRecommendations } from '../models/slice/articleDetailsRecommendationsSlice';
-import { getArticlesRecommendationsLoading } from '../models/selectors/recommendations';
+import { getArticleComments } from '../../models/slice/articleDetailsComment';
+import { getArticleCommentsLoading } from '../../models/selectors/comments';
+import { fetchArticleComments } from '../../models/services/fetchArticleComments/fetchArticleComments';
+import { addCommentForArticle } from '../../models/services/addCommentForArticle/addCommentForArticle';
+import { getArticleRecommendations } from '../../models/slice/articleDetailsRecommendationsSlice';
+import { getArticlesRecommendationsLoading } from '../../models/selectors/recommendations';
 import { fetchArticlesRecommendations }
-    from '../models/services/featchArticlesRecommendations/fetchArticlesRecommendations';
-import { articleDetailsPageReducer } from '../models/slice';
+    from '../../models/services/featchArticlesRecommendations/fetchArticlesRecommendations';
+import { articleDetailsPageReducer } from '../../models/slice';
+import { ArticleDetailPageHeader } from '../ArticleDetailPageHeader/ArticleDetailPageHeader';
 
 const reducers: ReducerList = {
     articleDetailsPage: articleDetailsPageReducer,
@@ -57,6 +58,7 @@ const ArticleDetailPage = () => {
         <Page>
             <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
                 <div className={cls.ArticleDetailPage}>
+                    <ArticleDetailPageHeader />
                     <ArticleDetails id={id} />
                     <Text title={t('Рекомендации')} className={cls.commentTitle} />
                     <ArticleList
